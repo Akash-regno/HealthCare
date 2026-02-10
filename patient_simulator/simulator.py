@@ -4,10 +4,15 @@ import pandas as pd
 import paho.mqtt.client as mqtt
 import random
 
-df = pd.read_csv("patient_simulator/mitbih_hr.csv")
+df = pd.read_csv("mitbih_hr.csv")
 
 client = mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
-client.connect("127.0.0.1",1883)
+# Using public broker as fallback
+try:
+    client.connect("127.0.0.1",1883)
+except:
+    print("Local broker not available, using public broker")
+    client.connect("test.mosquitto.org",1883)
 client.loop_start()
 
 for _, row in df.iterrows():

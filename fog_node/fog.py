@@ -52,5 +52,10 @@ def on_message(client,userdata,msg):
 client=mqtt.Client(mqtt.CallbackAPIVersion.VERSION2)
 client.on_connect=on_connect
 client.on_message=on_message
-client.connect("127.0.0.1",1883)
+# Using public broker as fallback
+try:
+    client.connect("127.0.0.1",1883)
+except:
+    print("Local broker not available, using public broker")
+    client.connect("test.mosquitto.org",1883)
 client.loop_forever()
