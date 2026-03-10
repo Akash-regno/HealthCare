@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { Heart, Droplet, Thermometer, AlertTriangle, CheckCircle, Users, TrendingUp } from 'lucide-react'
+import { Heart, Droplet, Thermometer, AlertTriangle, CheckCircle, Users, TrendingUp, Activity } from 'lucide-react'
 import VitalChart from '../components/VitalChart'
 import LoadingSpinner from '../components/LoadingSpinner'
 import ErrorMessage from '../components/ErrorMessage'
@@ -309,7 +309,12 @@ export default function Dashboard() {
                             <span>{patient.temp}°C</span>
                           </div>
                         </td>
-                        <td>{patient.acc_mag.toFixed(2)}</td>
+                        <td>
+                          <div className="metric-cell">
+                            <Activity size={16} className="metric-icon" />
+                            <span>{patient.acc_mag.toFixed(2)} g</span>
+                          </div>
+                        </td>
                         <td className="timestamp-cell">{formatTimestamp(patient.timestamp)}</td>
                       </tr>
                     ))}
