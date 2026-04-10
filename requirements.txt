@@ -12,6 +12,3 @@ joblib==1.3.0
 # Data Processing
 scipy==1.11.0
 wfdb==4.1.0
-
-# MQTT (Optional - for fog_node/fog.py)
-paho-mqtt==1.6.1
