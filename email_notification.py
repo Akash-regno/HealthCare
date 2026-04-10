@@ -3,6 +3,7 @@ Email Notification Service for Critical Patient Alerts
 Sends email notifications to doctors when critical patients are detected
 """
 
+import os
 import smtplib
 from email.mime.text import MIMEText
 from email.mime.multipart import MIMEMultipart
@@ -17,9 +18,9 @@ class EmailNotification:
         self.smtp_server = "smtp.gmail.com"
         self.smtp_port = 587
         
-        # Sender Email (Your Gmail)
-        self.sender_email = "akashghosh2507@gmail.com"      # Change this to your Gmail
-        self.sender_password = "eshsgpgagefasmyg"        # Use App Password, not regular password
+        # Sender Email (loaded from environment variables — never hardcode credentials!)
+        self.sender_email = os.environ.get("SENDER_EMAIL", "")      # Set via env var: SENDER_EMAIL
+        self.sender_password = os.environ.get("SENDER_APP_PASSWORD", "")  # Set via env var: SENDER_APP_PASSWORD
         
         # Doctor Email (Recipient)
         self.doctor_email = "akash.wxo@gmail.com"           # Change this to doctor's email
